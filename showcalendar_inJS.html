@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calendar</title>
+    <link rel="stylesheet" href="/navbar.css">
+    <style type="text/css">
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    }
+    header {
+    background-color: #522d80; /* Clemson purple */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    }
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th {
+      border: 1px solid black;
+      padding: 6px;
+      font-weight: bold;
+      background: #ccc;
+    }
+    td {
+      border: 1px solid black;
+      padding: 6px;
+      vertical-align: top;
+      width: 100px;
+    }
+    </style>
+    
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="calendar_functions.js"></script>
+</head>
+
+<body>
+    
+    <!-- Header -->
+    <header>
+        <h1>Calendar App</h1>
+    </header>
+        
+	<!-- Navbar -->
+	<div id="navbar"></div>
+    <script src="/components/navbar.js"></script>
+    
+    <nav>
+        <ul>
+            <li><a href="showcalendar_inJS.html">Calendar</a></li>
+            <li><a href="proposal.html">Proposal</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    
+  <h1>Select a Month/Year Combination</h1>
+  <form id="datePicker"></form>
+  <div id="myCal"></div>
+
+  <script type="text/javascript">
+  $().ready(function(){
+    // build the picker form
+    buildDateForm();
+    calendar();
+
+    $("#submit").click(function() {
+      var newMonth = $('#month').val();
+      var newYear = $('#year').val();
+      var newDate = new Date(newYear, newMonth, 1);
+      calendar(newDate);
+      return false;
+    });
+  });
+  </script>
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

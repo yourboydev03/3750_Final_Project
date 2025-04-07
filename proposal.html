@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposals</title>
+    <link rel="stylesheet" href="/navbar.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #522d80; /* Clemson purple */
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .subheader, h2 {
+            color: #004080;
+        }
+        h3 {
+            color: #004080;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- Header -->
+    <header>
+        <h1>Calendar App - Proposals</h1>
+    </header>
+        
+	<!-- Navbar -->
+	<div id="navbar"></div>
+    <script src="/components/navbar.js"></script>
+    
+    <nav>
+        <ul>
+            <li><a href="showcalendar_inJS.html">Calendar</a></li>
+            <li><a href="proposal.html">Proposal</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    
+    
+
+    <h1 class="subheader">Team Project Proposal</h1>
+    <h2>CPSC 3750 – Web App Development</h2>
+
+    <div class="section">
+        <h3>Team Members</h3>
+        <ul>
+            <li>Dev Patel</li>
+            <li>Drew Goessel</li>
+            <li>Name 3</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Chosen Base App</h3>
+        <p>We selected the <strong>Calendar App</strong> from the textbook. It includes features such as selecting months and years from the range 1990 to 2020 and then
+        <br>displaying a calendar of that specific month. We plan on increasing the calendar range to 1970 to 2050.</p>
+    </div>
+
+    <div class="section">
+        <h3>Project Overview</h3>
+        <p>Our application will allow users to view and manage schedules, appointments, or other events. Users can create, edit, and delete events with specific dates, 
+        <br>times and details. This app can be utilized by a variety of people, including those individuals who want to manage their time effectively, businesses that
+        <br>want to schedule meetings or manage appointments, and students who wish to control their coursework.</p>
+    </div>
+
+    <div class="section">
+        <h3>Proposed Enhancements</h3>
+        <p>In addition to implementing the base app, we plan to make the following improvements and changes:</p>
+        <ul>
+            <li><strong>HTML:</strong>
+                <ul>
+                    <li>[e.g., Added new forms/pages, improved layout/structure, included semantic HTML]</li>
+                    <li>Add forms/pages for actions such as event creation, event editing, and creating/editing user profiles.</li>
+                    <li>Improve layout and structure using semantic HTML5 elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code>).</li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>[e.g., Responsive design using Flexbox or Grid, dark mode toggle, custom styling]</li>
+                    <li>Implement a responsive design using Flexbox/CSS Grid to ensure optimal viewing on mobile, tablet, and desktop.</li>
+                    <li>Add a dark mode toggle that allows users to switch between light and dark themes.</li>
+                </ul>
+            </li>
+            <li><strong>JavaScript:</strong>
+                <ul>
+                    <li>[e.g., Form validation, AJAX, interactive components like sliders, modals, etc.]</li>
+                    <li>Implement client-side form validation for event creation and editing to prevent incorrect inputs.</li>
+                    <li>Use AJAX to update calendar events dynamically without a full page reload.</li>
+                    <li>Incorporate libraries for improved date handling and more fluid user interactions.</li>
+                </ul>
+            </li>
+            <li><strong>PHP:</strong>
+                <ul>
+                    <li>[e.g., New logic for handling users/posts/comments, added admin dashboard]</li>
+                    <li>Enhance the backend logic to support robust event management, including data sanitization, error handling, and session management.</li>
+                </ul>
+            </li>
+            <li><strong>Database:</strong>
+                <ul>
+                    <li>[e.g., Added tables, extra fields, user roles, search functionality]</li>
+                    <li>Expand the database schema with additional tables such as user accounts, event categories, or tags.</li>
+                </ul>
+            </li>
+            <li><strong>Authentication:</strong>
+                <ul>
+                    <li>Login/Logout with password hashing and optional user roles (e.g., user/admin)</li>
+                    <li>Implement a secure login and logout system using PHP sessions with password hashing to securely store credentials.</li>
+                    <li>Add a user registration process complete with email verification and password recovery functionality.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Division of Labor</h3>
+        <ul>
+            <li><strong>Name 1: Dev Patel</strong> [e.g., Database and PHP]</li>
+            <li><strong>Name 2: Drew Goessel</strong> [e.g., HTML/CSS, layout, styling]</li>
+            <li><strong>Name 3:</strong> [e.g., JavaScript and authentication]</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Timeline</h3>
+        <ul>
+            <li>Week 1 (due April 08 2PM): Base app implemented, proposal presented</li>
+            <li>Week 3 (due April 22 2PM): Complete enhancements, demo to instructor</li>
+            <li>Week 4 (due April 27 EOD): Polish UI and prepare for class demo</li>
+            <li>Week 5 (due Final Exam): Give a polished demo of your team's app</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Questions or Risks</h3>
+        <p>Potential challenges include integrating AJAX functionality with PHP backend, ensuring secure authentication, and maintaining responsive 
+        <br>design across various devices. Regular testing and incremental deployment will help mitigate these risks.</p>
+    </div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
