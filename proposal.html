@@ -20,6 +20,7 @@
         }
         .subheader, h2 {
             color: #004080;
+            padding: 0 0 10px 15px;
         }
         h3 {
             color: #004080;
@@ -29,6 +30,7 @@
         }
         .section {
             margin-bottom: 30px;
+            padding: 0 0 10px 15px;
         }
         code {
             background-color: #eee;
@@ -67,7 +69,6 @@
         <ul>
             <li>Dev Patel</li>
             <li>Drew Goessel</li>
-            <li>Name 3</li>
         </ul>
     </div>
 
@@ -90,43 +91,42 @@
         <ul>
             <li><strong>HTML:</strong>
                 <ul>
-                    <li>[e.g., Added new forms/pages, improved layout/structure, included semantic HTML]</li>
                     <li>Add forms/pages for actions such as event creation, event editing, and creating/editing user profiles.</li>
-                    <li>Improve layout and structure using semantic HTML5 elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;footer&gt;</code>).</li>
+                    <li>Improve layout and structure using semantic HTML5 elements (e.g. &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt;).</li>
                 </ul>
             </li>
             <li><strong>CSS:</strong>
                 <ul>
-                    <li>[e.g., Responsive design using Flexbox or Grid, dark mode toggle, custom styling]</li>
                     <li>Implement a responsive design using Flexbox/CSS Grid to ensure optimal viewing on mobile, tablet, and desktop.</li>
                     <li>Add a dark mode toggle that allows users to switch between light and dark themes.</li>
+                    <li>Have different themes for the calendar to showcase customization options.</li>
                 </ul>
             </li>
             <li><strong>JavaScript:</strong>
                 <ul>
-                    <li>[e.g., Form validation, AJAX, interactive components like sliders, modals, etc.]</li>
                     <li>Implement client-side form validation for event creation and editing to prevent incorrect inputs.</li>
                     <li>Use AJAX to update calendar events dynamically without a full page reload.</li>
                     <li>Incorporate libraries for improved date handling and more fluid user interactions.</li>
+                    <li>Users can select themes through a list format.</li>
                 </ul>
             </li>
             <li><strong>PHP:</strong>
                 <ul>
-                    <li>[e.g., New logic for handling users/posts/comments, added admin dashboard]</li>
                     <li>Enhance the backend logic to support robust event management, including data sanitization, error handling, and session management.</li>
+                    <li>Calendar customization saves for users even when logging out of the app.</li>
                 </ul>
             </li>
             <li><strong>Database:</strong>
                 <ul>
-                    <li>[e.g., Added tables, extra fields, user roles, search functionality]</li>
                     <li>Expand the database schema with additional tables such as user accounts, event categories, or tags.</li>
                 </ul>
             </li>
             <li><strong>Authentication:</strong>
                 <ul>
-                    <li>Login/Logout with password hashing and optional user roles (e.g., user/admin)</li>
                     <li>Implement a secure login and logout system using PHP sessions with password hashing to securely store credentials.</li>
                     <li>Add a user registration process complete with email verification and password recovery functionality.</li>
+                    <li>Login system should only allow users to access and manage their own data</li>
+                    <li>Logged-in users can only view and create their own events.</li>
                 </ul>
             </li>
         </ul>
@@ -135,16 +135,15 @@
     <div class="section">
         <h3>Division of Labor</h3>
         <ul>
-            <li><strong>Name 1: Dev Patel</strong> [e.g., Database and PHP]</li>
-            <li><strong>Name 2: Drew Goessel</strong> [e.g., HTML/CSS, layout, styling]</li>
-            <li><strong>Name 3:</strong> [e.g., JavaScript and authentication]</li>
+            <li><strong>Name 1: Dev Patel</strong> [User input validation, Error handling, User registration/login system, Email verification and password recovery]</li>
+            <li><strong>Name 2: Drew Goessel</strong> [Calendar events, UI styling, Calendar themes, Dark mode functionality]</li>
         </ul>
     </div>
 
     <div class="section">
         <h3>Timeline</h3>
         <ul>
-            <li>Week 1 (due April 08 2PM): Base app implemented, proposal presented</li>
+            <li>Week 1 (due April 10 2PM): Base app implemented, proposal presented</li>
             <li>Week 3 (due April 22 2PM): Complete enhancements, demo to instructor</li>
             <li>Week 4 (due April 27 EOD): Polish UI and prepare for class demo</li>
             <li>Week 5 (due Final Exam): Give a polished demo of your team's app</li>
