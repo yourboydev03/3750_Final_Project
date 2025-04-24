@@ -35,6 +35,16 @@
       vertical-align: top;
       width: 100px;
     }
+    .auth-nav {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 20px;
+        transform: translateY(-100%);
+    }
     </style>
     
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -57,8 +67,18 @@
             <li><a href="showcalendar_inJS.html">Calendar</a></li>
             <li><a href="proposal.html">Proposal</a></li>
             <li><a href="about.html">About</a></li>
+            <li class="search-li">
+                <input type="text" id="user-search" placeholder="Search users…" autocomplete="off">
+                <ul id="search-results" class="search-results"></ul>
+            </li>
+        </ul>
+        <ul class="auth-nav">
+            <li id="auth-link"><a href="login.html">Login</a></li>
         </ul>
     </nav>
+    <script src="/components/auth-nav.js"></script>
+    <script src="/components/search-nav.js"></script>
+    
     
   <h1>Select a Month/Year Combination</h1>
   <form id="datePicker"></form>
