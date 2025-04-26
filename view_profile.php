@@ -12,7 +12,7 @@ if ($viewId < 1) {
     exit;
 }
 
-$mysqli = new mysqli('localhost','devpatel_admin','Patel9317$$','devpatel_calendar');
+require 'db.php';
 if ($mysqli->connect_errno) {
     die('DB error');
 }
@@ -101,7 +101,7 @@ $mysqli->close();
         
         <div class="profile-view">
             <h2><?= htmlspecialchars($disp)?></h2>
-            <img src="<?= htmlspecialchars($pic ? "/Assignments/Final_Project/uploads/{$pic}" : "/Assignments/Final_Project/images/placeholder.png") ?>" alt="Avatar">
+            <img src="<?= htmlspecialchars($pic ? "/Final_Project/uploads/{$pic}" : "/Final_Project/images/placeholder.png") ?>" alt="Avatar">
             <p><strong>Joined:</strong> <?= htmlspecialchars($join) ?></p>
              <?php if (trim($bio) !== ''): ?>
                 <p><strong>Bio:</strong> <?= nl2br(htmlspecialchars($bio)) ?></p>
