@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+  <header>
+    <div id="navbar"></div>
+    <script src="../script.js"></script>
+ </header>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Calendar</title>
-    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="navbar.css">
     <style type="text/css">
     body {
     margin: 0;
@@ -45,12 +49,53 @@
         right: 20px;
         transform: translateY(-100%);
     }
+        .auth-nav img.avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      vertical-align: middle;
+    }
+    body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+    }
+
+    /* Keep tables readable */
+    body.dark-mode table,
+    body.dark-mode th,
+    body.dark-mode td {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    /* Slightly gray table headers in dark mode */
+    body.dark-mode th {
+        background: #ddd;
+    }
+    #events-list {
+    margin-top: 20px;
+    padding: 10px;
+    background: #eee;
+    border-radius: 8px;
+  }
+
+  .event-item {
+    margin-bottom: 15px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
     </style>
     
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="calendar_functions.js"></script>
 </head>
-
+<header>
+  <div id="navbar"></div>
+  <script src="../script.js"></script>
+</header>
 <body>
     
     <!-- Header -->
@@ -58,9 +103,6 @@
         <h1>Calendar App</h1>
     </header>
         
-	<!-- Navbar -->
-	<div id="navbar"></div>
-    <script src="/components/navbar.js"></script>
     
     <nav>
         <ul>
@@ -70,19 +112,66 @@
             <li class="search-li">
                 <input type="text" id="user-search" placeholder="Search users…" autocomplete="off">
                 <ul id="search-results" class="search-results"></ul>
+              </li>
+              <div id="theme-switcher">
+                <label for="theme-select">Theme:</label>
+                <select id="theme-select">
+                  <option value="classic">Classic</option>
+                  <option value="dark">Dark Mode</option>
+                  <option value="ocean">Ocean</option>
+                </select>
+              </div>
             </li>
+              
         </ul>
         <ul class="auth-nav">
             <li id="auth-link"><a href="login.html">Login</a></li>
         </ul>
     </nav>
-    <script src="/components/auth-nav.js"></script>
-    <script src="/components/search-nav.js"></script>
+    <script src="components/auth-nav.js"></script>
+    <script src="components/search-nav.js"></script>
     
     
   <h1>Select a Month/Year Combination</h1>
   <form id="datePicker"></form>
   <div id="myCal"></div>
+  
+  <button id="show-form-btn">➕ Add New Event</button>
+
+  <div id="event-form-container" style="display:none; margin-top:20px;">
+    <h3>Create New Event</h3>
+    <form id="new-event-form">
+      <p>
+        <label>Event Title:<br>
+          <input type="text" name="title" required>
+        </label>
+      </p>
+      <p>
+        <label>Event Date:<br>
+          <input type="date" name="event_date" required>
+        </label>
+      </p>
+      <p>
+        <label>Event Time:<br>
+          <input type="time" name="event_time" required>
+        </label>
+      </p>
+      <p>
+        <label>People (comma separated):<br>
+          <input type="text" name="people" required>
+        </label>
+      </p>
+      <p>
+        <button type="submit">Save Event</button>
+        <button type="button" id="cancel-form-btn">Cancel</button>
+      </p>
+    </form>
+  </div>
+  
+  <h2>Upcoming Events</h2>
+  <div id="events-list">
+  <!-- Events will be loaded here -->
+  </div>
 
   <script type="text/javascript">
   $().ready(function(){
@@ -98,6 +187,154 @@
       return false;
     });
   });
+  document.getElementById('theme-select').addEventListener('change', function() {
+  const theme = this.value;
+
+  // Remove any existing theme classes
+  document.body.classList.remove('theme-classic', 'theme-dark', 'theme-ocean');
+
+  // Add the selected theme
+  if (theme === 'classic') {
+    document.body.classList.add('theme-classic');
+  } else if (theme === 'dark') {
+    document.body.classList.add('theme-dark');
+  } else if (theme === 'ocean') {
+    document.body.classList.add('theme-ocean');
+  }
+
+  // Optionally store in localStorage to remember the user's theme
+  localStorage.setItem('selectedTheme', theme);
+});
+
+// When page loads, apply saved theme if it exists
+window.addEventListener('load', function() {
+  const savedTheme = localStorage.getItem('selectedTheme');
+  if (savedTheme) {
+    document.getElementById('theme-select').value = savedTheme;
+    document.body.classList.add('theme-' + savedTheme);
+  }
+});
+
+
+  // When page loads, check if dark mode was saved
+  window.addEventListener('DOMContentLoaded', () => {
+      const darkModeSetting = localStorage.getItem('darkMode');
+      if (darkModeSetting === 'enabled') {
+          document.body.classList.add('dark-mode');
+      }
+  });
+
+
+
+  function loadEvents() {
+  fetch('get_events.php')
+    .then(response => response.json())
+    .then(events => {
+      const eventsList = document.getElementById('events-list');
+      eventsList.innerHTML = '';
+
+      if (events.length === 0) {
+        eventsList.innerHTML = '<p>No events yet.</p>';
+        return;
+      }
+
+      events.forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.classList.add('event');
+
+        // Add data attributes (these are optional but VERY useful)
+        eventElement.dataset.id = event.id;
+        eventElement.dataset.title = event.title;
+        eventElement.dataset.date = event.event_date;
+        eventElement.dataset.time = event.event_time;
+        eventElement.dataset.people = event.people;
+
+        // Now add the inside content
+        eventElement.innerHTML = `
+          <strong>${event.title}</strong><br>
+          📅 ${event.event_date} 🕒 ${event.event_time}<br>
+          👥 ${event.people}
+          <hr>
+          <button class="edit-event-btn">Edit</button>
+        `;
+
+        // Then append it to the upcoming events section
+        eventsList.appendChild(eventElement);
+      });
+    });
+}
+
+let editingEventId = null; // <--- track if editing an existing event
+
+// When "Edit" is clicked
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('edit-event-btn')) {
+    const eventDiv = e.target.closest('.event');
+    
+    const id = eventDiv.getAttribute('data-id');
+    const title = eventDiv.getAttribute('data-title');
+    const date = eventDiv.getAttribute('data-date');
+    const time = eventDiv.getAttribute('data-time');
+    const people = eventDiv.getAttribute('data-people');
+
+    // Fill form with event data
+    const form = document.getElementById('new-event-form');
+    form.title.value = title;
+    form.event_date.value = date;
+    form.event_time.value = time;
+    form.people.value = people;
+
+    // Track which event is being edited
+    editingEventId = id;
+
+    // Show the form
+    document.getElementById('event-form-container').style.display = 'block';
+    document.getElementById('show-form-btn').style.display = 'none';
+  }
+});
+
+  // Button to show the form
+document.getElementById('show-form-btn').addEventListener('click', function() {
+  document.getElementById('event-form-container').style.display = 'block';
+  this.style.display = 'none'; // hide the "Add New Event" button
+});
+
+// Button to cancel
+document.getElementById('cancel-form-btn').addEventListener('click', function() {
+  document.getElementById('event-form-container').style.display = 'none';
+  document.getElementById('show-form-btn').style.display = 'inline-block'; // show button again
+});
+
+document.getElementById('new-event-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+
+  // If editing, add the event id
+  if (editingEventId) {
+    formData.append('id', editingEventId);
+  }
+
+  fetch(editingEventId ? 'edit_event.php' : 'add_event.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert(editingEventId ? 'Event updated!' : 'Event created!');
+    // Hide form, refresh list, reset
+    document.getElementById('event-form-container').style.display = 'none';
+    document.getElementById('show-form-btn').style.display = 'inline-block';
+    loadEvents(); 
+    this.reset();
+    editingEventId = null; // reset edit mode
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+});
+
+  loadEvents();
   </script>
   
   

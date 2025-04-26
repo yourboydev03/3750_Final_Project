@@ -47,6 +47,12 @@ $mysqli->close();
         <title><?=htmlspecialchars($disp)?>’s Profile</title>
         <link rel="stylesheet" href="/navbar.css">
         <style>
+            .profile img {
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
             .profile-view { max-width:600px; margin:2rem auto; }
             .profile-view img { width:120px; height:120px; border-radius:50%; object-fit:cover; }
             body {
@@ -71,16 +77,20 @@ $mysqli->close();
                 right: 20px;
                 transform: translateY(-100%);
             }
+            .navbar{
+                margin: 15px;
+            }
         </style>
         
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     </head>
-    
+    <header>
+    <div id="navbar"></div>
+   <script src="../script.js"></script>
+     </header>
     <body>
         
-        <!-- Navbar -->
-	    <div id="navbar"></div>
-        <script src="/components/navbar.js"></script>
+
         
         <nav>
         <ul>
@@ -96,8 +106,8 @@ $mysqli->close();
             <li id="auth-link"><a href="login.html">Login</a></li>
         </ul>
         </nav>
-        <script src="/components/auth-nav.js"></script>
-        <script src="/components/search-nav.js"></script>
+        <script src="components/auth-nav.js"></script>
+        <script src="components/search-nav.js"></script>
         
         <div class="profile-view">
             <h2><?= htmlspecialchars($disp)?></h2>

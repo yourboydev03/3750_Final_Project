@@ -23,7 +23,7 @@ if ($email === '' || $password === '') {
 }
 
 // Connect to MySQL
-$mysqli = new mysqli('localhost', 'devpatel_admin', 'Patel9317$$', 'devpatel_calendar');
+require 'db.php';
 if ($mysqli->connect_errno) {
     die('Database connection failed: ' . $mysqli->connect_error);
 }
@@ -42,7 +42,7 @@ if ($stmt = $mysqli->prepare('SELECT id, password FROM users WHERE email = ?')) 
         if (password_verify($password, $hash)) {
             // Success: set session and JS‐readable cookie
             $_SESSION['user_id'] = $userId;
-            setcookie('calendar_loggedIn', 'true', time() + 3600, '/Assignments/Final_Project/', '', true, false);
+            setcookie('calendar_loggedIn', 'true', time() + 3600, '/Final_Project/', '', true, false);
             header('Location: showcalendar_inJS.html');
             exit;
         }

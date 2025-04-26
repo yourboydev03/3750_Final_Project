@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    }
+    header {
+    background-color: #522d80; /* Clemson purple */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    }
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th {
+      border: 1px solid black;
+      padding: 6px;
+      font-weight: bold;
+      background: #ccc;
+    }
+    td {
+      border: 1px solid black;
+      padding: 6px;
+      vertical-align: top;
+      width: 100px;
+    }
+    .auth-nav {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 20px;
+        transform: translateY(-100%);
+    }
+        .auth-nav img.avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      vertical-align: middle;
+    }
+   /* Themes */
+.theme-classic {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .theme-classic header {
+    background-color: #522d80;
+    color: white;
+  }
+  
+  .theme-dark {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+  
+  .theme-dark header {
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+  }
+  
+  .theme-dark .event {
+    background-color: #333;
+  }
+  .theme-ocean {
+    background-color: #e0f7fa;
+    color: #004d40;
+  }
+  
+  .theme-ocean header {
+    background-color: #006064;
+    color: #e0f7fa;
+  }
+  
+  /* Optional: button accent styles */
+  button {
+    background-color: var(--button-color, #ff6600);
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .theme-classic button {
+    --button-color: #ff6600;
+  }
+  
+  .theme-dark button {
+    --button-color: #bb86fc;
+  }
+  
+  .theme-ocean button {
+    --button-color: #00bcd4;
+  }
+    #events-list {
+    margin-top: 20px;
+    padding: 10px;
+    background: #eee;
+    border-radius: 8px;
+  }
+
+  .event-item {
+    margin-bottom: 15px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
