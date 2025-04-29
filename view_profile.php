@@ -12,7 +12,7 @@ if ($viewId < 1) {
     exit;
 }
 
-require 'db.php';
+$mysqli = new mysqli('localhost','devpatel_admin','Patel9317$$','devpatel_calendar');
 if ($mysqli->connect_errno) {
     die('DB error');
 }
@@ -46,24 +46,17 @@ $mysqli->close();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?=htmlspecialchars($disp)?>’s Profile</title>
         <link rel="stylesheet" href="/navbar.css">
+        <link rel="stylesheet" href="themes.css">
+        <script src="themes.js" defer></script>
         <style>
-            .profile img {
-                width: 120px;
-                height: 120px;
-                object-fit: cover;
-                border-radius: 50%;
-            }
             .profile-view { max-width:600px; margin:2rem auto; }
             .profile-view img { width:120px; height:120px; border-radius:50%; object-fit:cover; }
             body {
                 margin: 0;
                 padding: 0;
                 font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
             }
             header {
-                background-color: #522d80; /* Clemson purple */
-                color: #fff;
                 padding: 10px;
                 text-align: center;
             }
@@ -77,20 +70,33 @@ $mysqli->close();
                 right: 20px;
                 transform: translateY(-100%);
             }
-            .navbar{
-                margin: 15px;
+            .profile-view {
+                max-width: 600px;
+                margin: 2rem auto;
+                text-align: center;
+            }
+            .profile-view img {
+                display: block;             
+                margin: 0 auto 1rem;        
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 50%;
             }
         </style>
         
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     </head>
-    <header>
-    <div id="navbar"></div>
-   <script src="../script.js"></script>
-     </header>
+    
     <body>
         
-
+        <header>
+            <h1><?=htmlspecialchars($disp)?>’s Profile</h1>
+        </header>
+        
+        <!-- Navbar -->
+	    <div id="navbar"></div>
+        <script src="/components/navbar.js"></script>
         
         <nav>
         <ul>
@@ -106,12 +112,12 @@ $mysqli->close();
             <li id="auth-link"><a href="login.html">Login</a></li>
         </ul>
         </nav>
-        <script src="components/auth-nav.js"></script>
-        <script src="components/search-nav.js"></script>
+        <script src="/components/auth-nav.js"></script>
+        <script src="/components/search-nav.js"></script>
         
         <div class="profile-view">
             <h2><?= htmlspecialchars($disp)?></h2>
-            <img src="<?= htmlspecialchars($pic ? "/Final_Project/uploads/{$pic}" : "/Final_Project/images/placeholder.png") ?>" alt="Avatar">
+            <img src="<?= htmlspecialchars($pic ? "/Assignments/Final_Project/uploads/{$pic}" : "/Assignments/Final_Project/images/placeholder.png") ?>" alt="Avatar">
             <p><strong>Joined:</strong> <?= htmlspecialchars($join) ?></p>
              <?php if (trim($bio) !== ''): ?>
                 <p><strong>Bio:</strong> <?= nl2br(htmlspecialchars($bio)) ?></p>

@@ -1,33 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-    <header>
-        <div id="navbar"></div>
-        <script src="../script.js"></script>
-     </header>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposals</title>
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="themes.css">
+    <script src="themes.js" defer></script>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
         }
         header {
-            background-color: #522d80; /* Clemson purple */
-            color: #fff;
             padding: 10px;
             text-align: center;
         }
         .subheader, h2 {
-            color: #004080;
             padding: 0 0 10px 15px;
-        }
-        h3 {
-            color: #004080;
         }
         ul {
             padding-left: 20px;
@@ -37,7 +28,6 @@
             padding: 0 0 10px 15px;
         }
         code {
-            background-color: #eee;
             padding: 2px 4px;
             font-family: Consolas, monospace;
         }
@@ -60,7 +50,10 @@
     <header>
         <h1>Calendar App - Proposals</h1>
     </header>
-
+        
+	<!-- Navbar -->
+	<div id="navbar"></div>
+    <script src="/components/navbar.js"></script>
     
     <nav>
         <ul>
@@ -73,7 +66,7 @@
             <li id="auth-link"><a href="login.html">Login</a></li>
         </ul>
     </nav>
-    <script src="components/auth-nav.js"></script>
+    <script src="/components/auth-nav.js"></script>
     
     
 

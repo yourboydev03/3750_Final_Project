@@ -1,6 +1,7 @@
 <?php
 session_name('CALENDARSESSID');
 session_start();
+header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -9,38 +10,29 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 if (empty($_SESSION['user_id'])) {
     http_response_code(403);
-    header('Content-Type: application/json; charset=utf-8');
     echo json_encode(['success' => false, 'error' => 'Not authenticated']);
     exit;
 }
 
-header('Content-Type: application/json; charset=utf-8');
+$id  = intval($_POST['id'] ?? 0);
+$uid = $_SESSION['user_id'];
 
-$id     = intval($_POST['id'] ?? 0);
-$title  = trim($_POST['title'] ?? '');
-$date   = trim($_POST['event_date'] ?? '');
-$time   = trim($_POST['event_time'] ?? '');
-$people = trim($_POST['people'] ?? '');
-$location = trim($_POST['location'] ?? '');
-
-if (! $id || ! $title || ! $date || ! $time) {
+if (! $id) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'error' => 'Missing required fields']);
+    echo json_encode(['success' => false, 'error' => 'Missing event ID']);
     exit;
 }
 
-$uid = $_SESSION['user_id'];
 $mysqli = new mysqli('localhost','devpatel_admin','Patel9317$$','devpatel_calendar');
 if ($mysqli->connect_errno) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Database connection failed']);
+    echo json_encode(['success' => false, 'error' => 'Database error']);
     exit;
 }
 
 $stmt = $mysqli->prepare(
-    'UPDATE events
-        SET title = ?, event_date = ?, event_time = ?, people = ?, location = ?
-      WHERE id = ? AND created_by = ?'
+    'DELETE FROM events
+     WHERE id = ? AND created_by = ?'
 );
 if (! $stmt) {
     http_response_code(500);
@@ -48,7 +40,7 @@ if (! $stmt) {
     exit;
 }
 
-$stmt->bind_param('sssssii', $title, $date, $time, $people, $location, $id, $uid);
+$stmt->bind_param('ii', $id, $uid);
 $stmt->execute();
 
 if ($stmt->affected_rows === 1) {
@@ -57,7 +49,7 @@ if ($stmt->affected_rows === 1) {
     http_response_code(400);
     echo json_encode([
         'success' => false,
-        'error'   => 'No such event or no changes made'
+        'error'   => 'Event not found or not yours'
     ]);
 }
 

@@ -1,5 +1,5 @@
  function buildDateForm() {
-    var months = ["January", "February", "March", "April", "May",  "June", "July", "August", "September", " October", "November", "December"];
+    var months = ["January", "February", "March", "April", "May",  "June", "July", "August", "September", "October", "November", "December"];
 
     $('#datePicker').append('<select id="month"></select>');
   
@@ -70,6 +70,24 @@
   
        week_day++;
      }
+     
+     
+     // Mark events
+     (function markEvents() {
+         var mm = month + 1, yy = year;
+         $.getJSON('get_events.php', {}, function(res) {
+             if (!res.success) return;
+             res.events.forEach(function(ev) {
+                var parts = ev.event_date.split('-').map(Number),
+                    y = parts[0],
+                    m = parts[1],
+                    d = parts[2];
+                if (y===yy && m===mm) {
+                    $('#day'+d).append('<span class="event-dot">📌</span>');
+                }
+             });
+         });
+     })();
   }
   
   

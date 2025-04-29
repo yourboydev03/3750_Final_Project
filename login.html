@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-   
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar - Login</title>
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="/navbar.css">
     <link rel="stylesheet" href="forgot-password.css">
     <style type="text/css">
         body {
@@ -69,22 +68,12 @@
             right: 20px;
             transform: translateY(-100%);
         }
-        .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            vertical-align: middle;
-        }
     </style>
     
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     
 </head>
-<header>
-    <div id="navbar"></div>
-    <script src="../script.js"></script>
- </header>
+
 <body>
     
     <!-- Header -->
@@ -92,7 +81,9 @@
         <h1>Calendar - Login</h1>
     </header>
         
-
+	<!-- Navbar -->
+	<div id="navbar"></div>
+    <script src="/components/navbar.js"></script>
     
     <nav>
         <ul>
@@ -105,7 +96,7 @@
             <li id="auth-link"><a href="login.html">Login</a></li>
         </ul>
     </nav>
-    <script src="components/auth-nav.js"></script>
+    <script src="/components/auth-nav.js"></script>
     
     
     <main>
