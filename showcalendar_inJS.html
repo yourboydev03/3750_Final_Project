@@ -123,6 +123,7 @@
     
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="calendar_functions.js"></script>
+  <script src="themes.js" defer></script>
 </head>
 
 <body>
@@ -228,29 +229,8 @@
 
   <!-- Scripts -->
   <script type="text/javascript">
-  
-    // On load: apply saved theme, default to light
-    const sel = document.getElementById('theme-select');
-    const applyTheme = theme => {
-        document.body.classList.toggle('theme-dark', theme === 'dark');
-        document.body.classList.toggle('theme-light', theme === 'light');
-        document.body.classList.toggle('theme-ocean', theme === 'ocean');
-        document.body.classList.toggle('theme-forest', theme === 'forest');
-        document.body.classList.toggle('theme-cherry', theme === 'cherry');
-        document.body.classList.toggle('theme-midnight', theme === 'midnight');
-    };
-    const saved = localStorage.getItem('calendarTheme') || 'light';
-    sel.value = saved;
-    applyTheme(saved);
-    
-    sel.addEventListener('change', e => {
-        const t = e.target.value;
-        applyTheme(t);
-        localStorage.setItem('calendarTheme', t);
-    });
-    
-  
   $(function(){
+      
     // build the picker form
     buildDateForm();
     calendar();
