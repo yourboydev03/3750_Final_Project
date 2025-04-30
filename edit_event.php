@@ -20,7 +20,7 @@ $id     = intval($_POST['id'] ?? 0);
 $title  = trim($_POST['title'] ?? '');
 $date   = trim($_POST['event_date'] ?? '');
 $time   = trim($_POST['event_time'] ?? '');
-$people = trim($_POST['people'] ?? '');
+$description = trim($_POST['description'] ?? '');
 $location = trim($_POST['location'] ?? '');
 
 if (! $id || ! $title || ! $date || ! $time) {
@@ -39,7 +39,7 @@ if ($mysqli->connect_errno) {
 
 $stmt = $mysqli->prepare(
     'UPDATE events
-        SET title = ?, event_date = ?, event_time = ?, people = ?, location = ?
+        SET title = ?, event_date = ?, event_time = ?, description = ?, location = ?
       WHERE id = ? AND created_by = ?'
 );
 if (! $stmt) {
@@ -48,7 +48,7 @@ if (! $stmt) {
     exit;
 }
 
-$stmt->bind_param('sssssii', $title, $date, $time, $people, $location, $id, $uid);
+$stmt->bind_param('sssssii', $title, $date, $time, $description, $location, $id, $uid);
 $stmt->execute();
 
 if ($stmt->affected_rows === 1) {

@@ -19,7 +19,7 @@ $uid    = $_SESSION['user_id'];
 $title  = trim($_POST['title'] ?? '');
 $date   = trim($_POST['event_date'] ?? '');
 $time   = trim($_POST['event_time'] ?? '');
-$people = trim($_POST['people'] ?? '');
+$description = trim($_POST['description'] ?? '');
 $location = trim($_POST['location'] ?? '');
 
 if (! $title || ! $date || ! $time) {
@@ -36,7 +36,7 @@ if ($mysqli->connect_errno) {
 }
 
 $stmt = $mysqli->prepare(
-    'INSERT INTO events (title, event_date, event_time, people, location, created_by)
+    'INSERT INTO events (title, event_date, event_time, description, location, created_by)
      VALUES (?, ?, ?, ?, ?, ?)'
 );
 if (! $stmt) {
@@ -45,7 +45,7 @@ if (! $stmt) {
     exit;
 }
 
-$stmt->bind_param('sssssi', $title, $date, $time, $people, $location, $uid);
+$stmt->bind_param('sssssi', $title, $date, $time, $description, $location, $uid);
 if (! $stmt->execute()) {
     http_response_code(500);
     echo json_encode(['success' => false, 'error' => 'Insert failed']);

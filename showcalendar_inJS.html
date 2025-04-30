@@ -202,8 +202,8 @@
         </label>
       </p>
       <p>
-        <label>People (comma separated):<br>
-          <input type="text" name="people" id="event-people" required>
+        <label>Description:<br>
+          <input type="text" name="description" id="event-description" required>
         </label>
       </p>
       <p>
@@ -291,12 +291,12 @@
                         data-title="${ev.title.replace(/"/g,'&quot;')}"
                         data-date="${ev.event_date}"
                         data-time="${ev.event_time}"
-                        data-people="${ev.people.replace(/"/g,'&quot;')}"
+                        data-description="${ev.description.replace(/"/g,'&quot;')}"
                         data-location="${ev.location.replace(/"/g,'&quot;')}">
                         
                         <strong>${ev.title}</strong><br>
                         📅 ${ formatDate(ev.event_date) } 🕒 ${ formatTime(ev.event_time) }<br>
-                        👥 ${ev.people}<br>
+                        📝 ${ev.description}<br>
                         📍 ${ev.location}
                         <button class="edit-event-btn">Edit</button>
                         <button class="delete-event-btn">Delete</button>
@@ -316,7 +316,7 @@
         $('#event-title').val( $p.data('title') );
         $('#event-date').val( $p.data('date') );
         $('#event-time').val( $p.data('time') );
-        $('#event-people').val( $p.data('people') );
+        $('#event-description').val( $p.data('description') );
         $('#event-location').val( $p.data('location') );
         $('#event-form-container').slideDown();
     });

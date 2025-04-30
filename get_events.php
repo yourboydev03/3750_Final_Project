@@ -20,7 +20,7 @@ if ($mysqli->connect_errno) {
 }
 
 $stmt = $mysqli->prepare(
-    'SELECT id, title, event_date, event_time, people, location
+    'SELECT id, title, event_date, event_time, description, location
        FROM events
       WHERE created_by = ?
       ORDER BY event_date, event_time'
